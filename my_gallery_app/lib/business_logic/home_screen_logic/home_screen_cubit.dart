@@ -72,4 +72,10 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       debugPrint(onError.toString());
     });
   }
+
+  void logOut() {
+    CacheHelper.saveData(key: AppConstantKeys.isLoginKey, val: false);
+    CacheHelper.saveData(key: AppConstantKeys.tokenKey, val: '');
+    emit(LogOutSuccessState());
+  }
 }

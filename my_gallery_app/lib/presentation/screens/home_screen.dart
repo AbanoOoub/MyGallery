@@ -25,6 +25,10 @@ class HomeScreen extends StatelessWidget {
       child: BlocConsumer<HomeScreenCubit, HomeScreenState>(
         listener: (context, state) {
           // TODO: implement listener
+          if (state is LogOutSuccessState) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, AppRoutes.loginScreenRoute, (route) => false);
+          }
         },
         builder: (context, state) {
           HomeScreenCubit homeScreenCubit = HomeScreenCubit.get(context);
@@ -81,8 +85,7 @@ class HomeScreen extends StatelessWidget {
                                   fontSize: AppFontDetails.mediumFontSize,
                                   textColor: AppColors.textColor,
                                   onTap: () {
-                                    Navigator.pushNamedAndRemoveUntil(
-                                        context, AppRoutes.loginScreenRoute, (route) => false);
+                                    homeScreenCubit.logOut();
                                   },
                                 ),
                                 CustomBtnWidget(

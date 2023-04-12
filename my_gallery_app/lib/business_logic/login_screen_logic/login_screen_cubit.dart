@@ -29,13 +29,14 @@ class LoginScreenCubit extends Cubit<LoginScreenState> {
         'password': password,
       }),
     ).then((value) {
-      if (value.statusCode == 200) {
+      if (value.data['token'] != null) {
         loginResponse = LoginResponse.fromJson(value.data);
         saveDataLocally();
         emit(LoginSuccessState());
       } else {
         debugPrint(value.data.toString());
-        Fluttertoast.showToast(msg: 'User Name or Password is Wrong, Try Again!');
+        // Fluttertoast.showToast(msg: 'User Name or Password is Wrong, Try Again!');
+        Fluttertoast.showToast(msg: value.data['error_message']);
         emit(LoginFailedState());
       }
     }).catchError((onError) {

@@ -20,3 +20,5 @@ class UploadImageSuccessState extends HomeScreenState {}
 class UploadImageFailedState extends HomeScreenState {}
 
 class UploadImageErrorState extends HomeScreenState {}
+
+class LogOutSuccessState extends HomeScreenState {}
